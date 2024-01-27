@@ -1,11 +1,13 @@
+import { getSession } from "next-auth/react";
+import { useEffect } from "react";
 import styles from "./page.module.css";
-import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        <Image src="/everything.webp" fill objectFit="cover" alt="introductory image" />
+        <a href="/api/auth/login">Login</a>
       </section>
     </main>
   );
