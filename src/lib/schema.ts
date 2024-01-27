@@ -1,7 +1,7 @@
 export type Entry = {
-  id: number;
+  id: string;
   caption: string;
-  image: string;
-  isVideo: boolean;
-  createdAt: string;
+  userId: string;
+  mediaId: string;
+  createdAt: Date;
 };
