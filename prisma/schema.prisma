@@ -10,3 +10,24 @@ datasource db {
   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
+
+model User {
+  id    String  @id @unique @default(cuid())
+  name  String?
+  Entry Entry[]
+}
+
+model Entry {
+  id      String  @id @unique @default(cuid())
+  user    User?   @relation(fields: [userId], references: [id])
+  mediaId String?
+  caption String?
+  userId  String?
+}
+
+model Hume {
+  id        String    @id @unique @default(cuid())
+  mediaId   String?
+  timestamp DateTime?
+  emotion   String?
+}
