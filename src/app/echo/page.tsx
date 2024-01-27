@@ -1,7 +1,6 @@
 "use client"
 
-import axios from "axios";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam"
 import AudioCapture from "@/lib/components/AudioCapture";
 import { type Emotion } from "@/lib/schema";
