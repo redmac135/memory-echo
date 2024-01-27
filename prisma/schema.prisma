@@ -13,21 +13,32 @@ datasource db {
 
 model User {
   id    String  @id @unique @default(cuid())
-  name  String?
+  name  String
   Entry Entry[]
 }
 
 model Entry {
-  id      String  @id @unique @default(cuid())
-  user    User?   @relation(fields: [userId], references: [id])
-  mediaId String?
-  caption String?
-  userId  String?
+  id        String   @id @unique @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  caption   String
+  media     Media    @relation(fields: [mediaId], references: [id])
+  createdAt DateTime @default(now())
+  userId    String
+  mediaId   String
 }
 
 model Hume {
-  id        String    @id @unique @default(cuid())
-  mediaId   String?
-  timestamp DateTime?
-  emotion   String?
+  id        String   @id @unique @default(cuid())
+  timestamp DateTime
+  emotion   String
+  media     Media    @relation(fields: [mediaId], references: [id])
+  mediaId   String
+}
+
+model Media {
+  id       String   @id @unique @default(cuid())
+  publicId String
+  isVideo  Boolean? @default(false)
+  Entry    Entry[]
+  Hume     Hume[]
 }
