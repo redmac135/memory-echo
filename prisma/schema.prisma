@@ -18,12 +18,13 @@ model User {
 }
 
 model Entry {
-  id      String @id @unique @default(cuid())
-  user    User   @relation(fields: [userId], references: [id])
-  caption String
-  media   Media  @relation(fields: [mediaId], references: [id])
-  userId  String
-  mediaId String
+  id        String   @id @unique @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  caption   String
+  media     Media    @relation(fields: [mediaId], references: [id])
+  createdAt DateTime @default(now())
+  userId    String
+  mediaId   String
 }
 
 model Hume {
