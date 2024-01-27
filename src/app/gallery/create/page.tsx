@@ -1,23 +1,80 @@
 "use client";
 
-import { CldImage, CldUploadWidget, CldVideoPlayer } from "next-cloudinary"
-import 'next-cloudinary/dist/cld-video-player.css';
+import {
+  CldImage,
+  CldUploadWidget,
+  CldVideoPlayer,
+  type CldUploadWidgetInfo,
+} from "next-cloudinary";
+import "next-cloudinary/dist/cld-video-player.css";
+import { FormEvent, useState } from "react";
+import axios from "axios";
 
 export default function CreateEntry() {
-    return (
-        <div>
-            {/* Figure out if it's Image of Video and Render Accordingly */}
-        <CldImage width={300} height={300} src="gallery/we6jzvdktvrjutozjzor" alt="img" />
-        <CldVideoPlayer width={300} height={300} src="gallery/we6jzvdktvrjutozjzor" />
+  const [mediaInfo, setMediaInfo] = useState<CldUploadWidgetInfo>();
+  const [caption, setCaption] = useState<string>("");
+  const USERID = "tmp-user";
 
-        <CldUploadWidget uploadPreset="gallery-default">
-            {({ open }) => {
-                return (
-                    <button onClick={() => open()}>Upload</button>
-                )
-            
-            }}
-        </CldUploadWidget>
-        </div>
-    )
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!mediaInfo) {
+      console.error("Media info not found");
+      return;
+    }
+    axios.post("/api/entries", {
+      mediaId: mediaInfo.public_id,
+      userId: USERID, // tmp userId
+      isVideo: mediaInfo.resource_type === "video" ? true : false,
+      caption: caption,
+    });
+    console.log("success");
+    window.location.href = "/gallery";
+  };
+
+  return (
+    <form onSubmit={(e) => handleSubmit(e)}>
+      {mediaInfo ? (
+        mediaInfo.resource_type === "video" ? (
+          <CldVideoPlayer width={300} height={300} src={mediaInfo.public_id} />
+        ) : (
+          <CldImage
+            width={300}
+            height={300}
+            src={mediaInfo.public_id}
+            alt={caption}
+          />
+        )
+      ) : null}
+
+      <CldUploadWidget
+        uploadPreset="gallery-default"
+        onSuccess={(results) => {
+          if (!results.info || typeof results.info === "string") {
+            console.error("Upload failed");
+            return;
+          }
+          setMediaInfo(results.info);
+        }}
+      >
+        {({ open }) => {
+          return (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                open();
+              }}
+            >
+              Upload
+            </button>
+          );
+        }}
+      </CldUploadWidget>
+      <input
+        type="text"
+        value={caption}
+        onChange={(e) => setCaption(e.target.value)}
+      />
+      <button>Submit</button>
+    </form>
+  );
 }
