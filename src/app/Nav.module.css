@@ -1,0 +1,23 @@
+.nav {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo img {
+    display: block;
+    margin-right: 10px; 
+    margin: 20%;
+    margin-left: 30%;
+  }
+  
+  .blackBtn {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+  }
+  
