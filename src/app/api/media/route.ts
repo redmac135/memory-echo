@@ -1,5 +1,12 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+  api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
+});
 
 export async function GET(req: NextRequest) {
   const mediaId = req.nextUrl.searchParams.get("mediaId");
@@ -19,26 +26,16 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const { userId, publicId, caption, isVideo } = await req.json();
+  const { file, isVideo } = await req.json();
+
+  const media = await cloudinary.uploader.upload(file, {
+    resource_type: isVideo ? "video" : "image",
+  });
+
   const response = await prisma.media.create({
     data: {
-      publicId: publicId,
+      publicId: media.public_id,
       isVideo: isVideo,
-    },
-  });
-  await prisma.entry.create({
-    data: {
-      caption: caption,
-      user: {
-        connect: {
-          id: userId,
-        },
-      },
-      media: {
-        connect: {
-          id: response.id,
-        },
-      },
     },
   });
   return NextResponse.json(response);

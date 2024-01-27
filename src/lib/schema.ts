@@ -5,3 +5,8 @@ export type Entry = {
   mediaId: string;
   createdAt: Date;
 };
+
+export type Emotion = {
+  name: string;
+  score: number;
+};
