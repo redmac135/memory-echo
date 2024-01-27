@@ -17,3 +17,29 @@ export async function GET(req: NextRequest) {
   }
   return NextResponse.json(response);
 }
+
+export async function POST(req: NextRequest) {
+  const { userId, publicId, caption, isVideo } = await req.json();
+  const response = await prisma.media.create({
+    data: {
+      publicId: publicId,
+      isVideo: isVideo,
+    },
+  });
+  await prisma.entry.create({
+    data: {
+      caption: caption,
+      user: {
+        connect: {
+          id: userId,
+        },
+      },
+      media: {
+        connect: {
+          id: response.id,
+        },
+      },
+    },
+  });
+  return NextResponse.json(response);
+}
