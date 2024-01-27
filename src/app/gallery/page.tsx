@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import {type Entry} from "@/lib/schema";
 import styles from "./page.module.css";
+import prisma from "@/lib/prisma";
 
 export default function Gallery() {
     const [loading, setLoading] = useState(true);
@@ -12,58 +13,7 @@ export default function Gallery() {
     useEffect(() => {
         // add axios call here
         setLoading(false);
-        setEntries([
-            {
-                id: 1,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 2,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-            {
-                id: 3,
-                caption: "nature in nature",
-                image: "https://picsum.photos/id/237/200/300"
-            },
-        ])
+        setEntries([]);
     }, [])
 
     return (
