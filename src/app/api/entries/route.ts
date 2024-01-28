@@ -21,6 +21,5 @@ export async function POST(req: NextRequest) {
       userId: userId,
     },
   });
-  console.log(entry);
   return NextResponse.redirect("/gallery");
 }

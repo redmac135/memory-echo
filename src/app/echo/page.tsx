@@ -15,6 +15,8 @@ export default function Echo() {
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
+    if (!webcamRef.current) return;
+    if (!webcamRef.current.stream) return;
     mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
       mimeType: "video/webm",
     });
@@ -23,7 +25,7 @@ export default function Echo() {
     //   handleDataAvailable
     // );
     mediaRecorderRef.current.start();
-  }, [webcamRef, setCapturing, mediaRecorderRef]);
+  }, [setCapturing, mediaRecorderRef]);
 
   // const handleDataAvailable = useCallback(
   //   ({ data }) => {
@@ -114,7 +116,7 @@ export default function Echo() {
             })
             .slice(0, 5)
             .map((emotion) => (
-              <tr>
+              <tr key={emotion.name}>
                 <td>{emotion.name}</td>
                 <td>{emotion.score}</td>
               </tr>

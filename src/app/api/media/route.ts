@@ -9,7 +9,8 @@ cloudinary.config({
 });
 
 export async function GET(req: NextRequest) {
-  const mediaId = req.nextUrl.searchParams.get("mediaId");
+  const { searchParams } = new URL(req.url);
+  const mediaId = searchParams.get("mediaId");
   if (!mediaId) {
     return NextResponse.json({ error: "mediaId is required" });
   }
