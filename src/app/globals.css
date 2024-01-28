@@ -27,3 +27,8 @@ h6 {
   margin: 0;
   padding: 0;
 }
+
+/* Overwrites */
+.modal-title {
+  font-size: 2rem !important;
+}

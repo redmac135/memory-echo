@@ -1,0 +1,63 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  z-index: -1;
+  background: linear-gradient(45deg, #5095ff, #5855d3, #2332bd);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.wrapper {
+  margin-right: 6rem;
+  margin-left: 6rem;
+  margin-top: 4rem;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+  background-color: white;
+  padding: 2rem;
+  margin: 0.5rem;
+  border-radius: 1rem;
+}
+
+.topright {
+  background-color: white;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.bottomright {
+  background-color: white;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.progressBar {
+  width: 6rem;
+}
+
+.progressRow {
+  padding-left: 2rem;
+}

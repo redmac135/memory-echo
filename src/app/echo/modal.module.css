@@ -1,154 +1,33 @@
-.body {
-    font-family: 'Inter', sans-serif;
-    
-    margin: 0;
-    width: 40vw;
-    height: 50vh; /* Force the body to take full viewport height */
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-
-}
-
-.background {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-/* Trigger Button */
-.button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 400;
-    background: linear-gradient(to right, #5855D3, #5095FF);
-    color: #ffffff;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.button1 {
-    padding: 10px 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    background-color: #5095FF;
-    color: #000000;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    border: none;
-}
-
-.button2 {
-    padding: 10px 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    background-color: #5855D3;
-    color: #000000;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    border: none;
-}
-
-.button:hover {
-    background-color: #2980b9;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-/* Modal Content */
-.modal_content {
-    position: relative;
-    background-color: #ffffff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 30%;
-    height: 50%;
-    border-radius: 8px;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3);
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close:hover,
-.close:focus {
-    color: #ff5b5b;
-}
-
-.imgg {
-    padding: 30px;
+.modelWrapper {
+  font-family: "Inter", sans-serif;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .title {
-    padding-top: 15px;
-    font-size: 2rem;
-    background: linear-gradient(to right, #5855D3, #5095FF); /* Dark to light blue gradient */
-    -webkit-background-clip: text; /* Apply gradient to text content */
-    background-clip: text;
-    color: transparent; /* Make the original text color transparent */
+  background: linear-gradient(
+    to right,
+    #5855d3,
+    #5095ff
+  ); /* Dark to light blue gradient */
+  -webkit-background-clip: text; /* Apply gradient to text content */
+  background-clip: text;
+  color: transparent; /* Make the original text color transparent */
+
+  --bs-modal-header-border-width: 0 !important;
+  justify-content: center !important;
+  padding-bottom: 0 !important;
 }
 
 .subtitle {
-    padding-top: 5px;
-    font-size: 1.5rem;
+  padding-top: 5px;
+  font-size: 1.5rem;
+
+  --bs-modal-header-border-width: 0 !important;
+  justify-content: center !important;
 }
 
-/* Common styles for both buttons */
-.round_button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  /* Filled button */
-  .filled_button {
-    background-color: #3498db; /* Choose your desired background color */
-    color: #fff; /* Choose your desired text color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Drop shadow */
-    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
-    border-radius: 15%;
-  }
-  
-  /* Outlined button */
-  .outlined_button {
-    background-color: transparent;
-    border: 2px solid #3498db; /* Choose your desired outline color */
-    color: #3498db; /* Choose your desired text color */
-  }
-  
+.footer {
+  --bs-modal-footer-border-width: 0 !important;
+  display: flex;
+  justify-content: center !important;
+}

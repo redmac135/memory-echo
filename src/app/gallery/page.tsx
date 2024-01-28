@@ -18,7 +18,6 @@ export default function Gallery() {
   return (
     <main>
       <div className={styles.bgtint}></div>
-      <img className={styles.logo} src="/logohighqual.png" alt="logo"/>
       <h1 className={styles.title}>Your Memory Gallery</h1>
       <section className={styles.galleryWrapper}>
         <div className={styles.gallery}>

@@ -48,7 +48,7 @@ export default function AudioAnalysis({
         data.prosody.predictions[0].emotions.forEach(
           (emotionObj: { name: EmotionName; score: number }) => {
             const emotionName: EmotionName = emotionObj.name;
-            newValue[emotionName] = prev[emotionName] + emotionObj.score;
+            newValue[emotionName] = prev[`${emotionName}`] + emotionObj.score;
           }
         );
         return newValue;
@@ -86,9 +86,5 @@ export default function AudioAnalysis({
     }
   }
 
-  return (
-    <div>
-      <button onClick={sendRequest}>TEST</button>
-    </div>
-  );
+  return <></>;
 }

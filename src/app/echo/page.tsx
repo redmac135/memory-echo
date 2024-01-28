@@ -4,10 +4,12 @@ import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import AudioCapture from "@/lib/components/AudioCapture";
 import Example from "./Modal";
-import styles from "./echo.module.css";
-import { Emotions, type Emotion } from "@/lib/schema";
+import styles from "./page.module.css";
+import { Emotions, type Emotion, EmotionData } from "@/lib/schema";
 import EchoPrompt from "@/lib/components/EchoPrompt";
 import axios from "axios";
+import { Progress } from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const HAPPY_EMOTIONS = [
   "Admiration",
@@ -49,15 +51,22 @@ const SAD_EMOTIONS = [
 ];
 
 export default function Echo() {
-  <div className={styles.background}></div>
+  <div className={styles.background}></div>;
   const webcamRef = useRef<Webcam>();
   const mediaRecorderRef = useRef<MediaRecorder>();
   const [capturing, setCapturing] = useState(false);
-  const [emotions, setEmotions] = useState<Emotion[]>([]);
+  const [emotions, setEmotions] = useState<Emotion[]>([
+    { name: "Admiration", score: 1.0 },
+    { name: "Adoration", score: 0.25 },
+    { name: "Aesthetic Appreciation", score: 0.0 },
+  ]);
   const [audioEncoded, setAudioEncoded] = useState("");
   const [promptId, setPromptId] = useState("");
   const [mediaId, setMediaId] = useState("");
-  const [runningTotal, setRunningTotal] = useState<Emotions>();
+  const [runningTotal, setRunningTotal] = useState<Emotions>(EmotionData);
+  const [modal, setModal] = useState(true);
+
+  const toggle = () => setModal(!modal);
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
@@ -93,55 +102,75 @@ export default function Echo() {
         happiness: happiness,
       });
     }
-  }, [mediaRecorderRef, webcamRef, setCapturing]);
+
+    setModal(true);
+    console.log("hi");
+  }, [mediaRecorderRef, webcamRef, setCapturing, setModal]);
 
   const videoConstraints = {
     facingMode: "user",
   };
 
   return (
-    <main>
-      <Webcam
-        videoConstraints={videoConstraints}
-        audio={true}
-        ref={webcamRef}
-      />
-      <Example/>
-      {capturing ? (
-        
-        <button onClick={handleStopCaptureClick}>Stop Capture</button>
-      ) : (
-        <button onClick={handleStartCaptureClick}>Start Capture</button>
-      )}
-      <AudioCapture
-        capturing={capturing}
-        audioEncoded={audioEncoded}
-        setAudioEncoded={setAudioEncoded}
-        setEmotions={setEmotions}
-        setRunningTotal={setRunningTotal}
-      />
-      <EchoPrompt setPromptId={setPromptId} setMediaId={setMediaId} />
-      <table>
-        <thead>
-          <tr>
-            <th>Emotion</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {emotions
-            .sort((a, b) => {
-              return b.score - a.score;
-            })
-            .slice(0, 5)
-            .map((emotion) => (
-              <tr key={emotion.name}>
-                <td>{emotion.name}</td>
-                <td>{emotion.score}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+    <main className={styles.wrapper}>
+      <h1 className={styles.title}>Echoing...</h1>
+      <div className={styles.background} />
+      <div className={styles.flexContainer}>
+        <section className={styles.left}>
+          <Webcam
+            videoConstraints={videoConstraints}
+            audio={true}
+            ref={webcamRef}
+          />
+          {capturing ? (
+            <button onClick={handleStopCaptureClick}>Stop Capture</button>
+          ) : (
+            <button onClick={handleStartCaptureClick}>Start Capture</button>
+          )}
+        </section>
+        <Example modal={modal} toggle={toggle} />
+        <AudioCapture
+          capturing={capturing}
+          audioEncoded={audioEncoded}
+          setAudioEncoded={setAudioEncoded}
+          setEmotions={setEmotions}
+          setRunningTotal={setRunningTotal}
+        />
+
+        <section className={styles.right}>
+          <div className={styles.topright}>
+            <EchoPrompt setPromptId={setPromptId} setMediaId={setMediaId} />
+          </div>
+          <div className={styles.bottomright}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Emotion</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {emotions
+                  .sort((a, b) => {
+                    return b.score - a.score;
+                  })
+                  .slice(0, 3)
+                  .map((emotion) => (
+                    <tr key={emotion.name}>
+                      <td>{emotion.name}</td>
+                      <td className={styles.progressRow}>
+                        <Progress
+                          value={emotion.score * 100}
+                          className={styles.progressBar}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
