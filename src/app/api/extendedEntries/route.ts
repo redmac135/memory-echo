@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const entries = await prisma.entry.findMany({
+    where: { userId: "tmp-user" },
     orderBy: { createdAt: "desc" },
     include: {
       media: true,
     },
   });
-  console.log(entries);
   return NextResponse.json(entries);
 }
