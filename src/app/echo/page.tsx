@@ -4,8 +4,11 @@ import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import AudioCapture from "@/lib/components/AudioCapture";
 import { type Emotion } from "@/lib/schema";
+import Example from "./Modal";
+import styles from "./echo.module.css";
 
 export default function Echo() {
+  <div className={styles.background}></div>
   const webcamRef = useRef<Webcam>();
   const mediaRecorderRef = useRef<MediaRecorder>();
   const [capturing, setCapturing] = useState(false);
@@ -91,7 +94,9 @@ export default function Echo() {
         audio={true}
         ref={webcamRef}
       />
+      <Example/>
       {capturing ? (
+        
         <button onClick={handleStopCaptureClick}>Stop Capture</button>
       ) : (
         <button onClick={handleStartCaptureClick}>Start Capture</button>
