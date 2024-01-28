@@ -18,7 +18,7 @@ function Example(args) {
         <ModalHeader className={styles.title}>Memory Recorded!</ModalHeader>
         <ModalHeader className={styles.subtitle}>Whats Next?</ModalHeader>
         <ModalBody>
-          <Image className={styles.imgg} fill={false} width={350} height={350} src='/mascotannouncement.png' alt='u blind mf gain a pair of eyes'/>
+          <img className={styles.imgg} width={350} height={350} src='/mascotannouncement.png' alt='u blind mf gain a pair of eyes'/>
         </ModalBody>
         <ModalFooter>
           <Button className={styles.button1} onClick={toggle}>

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        <Image src="/everything.webp" fill objectFit="cover" alt="introductory image" />
+        <img src="/everything-2.png" objectFit="cover" alt="introductory image" />
       </section>
     </main>
   );
