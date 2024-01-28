@@ -17,6 +17,7 @@ export default function Gallery() {
 
   return (
     <main>
+      <div className={styles.bgtint}></div>
       <h1 className={styles.title}>ECHO</h1>
       <h5 className={styles.description}>Welcome to your harbour...</h5>
       <section className={styles.galleryWrapper}>
@@ -25,26 +26,40 @@ export default function Gallery() {
             if (entry.media.isVideo) {
               return (
                 <div key={entry.id} className={styles.galleryItem}>
-                  <CldVideoPlayer
-                    src={entry.media.publicId}
-                    width={300}
-                    height={300}
-                  />
+                  <div className={styles.mediaCenterer}>
+                    <div className={styles.mediaWrapper}>
+                      <CldVideoPlayer
+                        src={entry.media.publicId}
+                        width={190}
+                        height={190}
+                      />
+                    </div>
+                  </div>
                   <p className={styles.galleryItemInfo}>{entry.caption}</p>
+                  <p className={styles.galleryItemDate}>
+                    {new Date(entry.createdAt).toLocaleDateString("en-US")}
+                  </p>
                 </div>
               );
             } else {
               return (
                 <div key={entry.id} className={styles.galleryItem}>
-                  <CldImage
-                    src={entry.media.publicId}
-                    alt={entry.caption}
-                    className={styles.galleryImg}
-                    width={300}
-                    height={300}
-                    crop="fill"
-                  />
+                  <div className={styles.mediaCenterer}>
+                    <div className={styles.mediaWrapper}>
+                      <CldImage
+                        src={entry.media.publicId}
+                        alt={entry.caption}
+                        className={styles.galleryImg}
+                        width={210}
+                        height={210}
+                        crop="fill"
+                      />
+                    </div>
+                  </div>
                   <p className={styles.galleryItemInfo}>{entry.caption}</p>
+                  <p className={styles.galleryItemDate}>
+                    {new Date(entry.createdAt).toLocaleDateString("en-US")}
+                  </p>
                 </div>
               );
             }
