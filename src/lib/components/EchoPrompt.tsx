@@ -24,18 +24,21 @@ export default function EchoPrompt({ setPromptId }: { setPromptId: any }) {
 
   return (
     <div>
-      <h1>Echo Prompt</h1>
+      <p>Let's talk about...</p>
       {media?.isVideo ? (
         <CldVideoPlayer src={media?.publicId} width={280} height={400} />
       ) : (
         <CldImage
           src={media?.publicId}
           alt={prompt?.caption}
-          width={280}
-          height={400}
+          width={300}
+          height={300}
+          crop="fill"
         />
       )}
-      <p>{prompt?.caption}</p>
+      <p>
+        This {media?.isVideo ? "video" : "photo"} of {prompt?.caption}
+      </p>
     </div>
   );
 }
