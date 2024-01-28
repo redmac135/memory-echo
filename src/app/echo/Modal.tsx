@@ -22,11 +22,19 @@ function Example({ modal, toggle, ...args }) {
             <Button
               color="secondary"
               className={styles.button1}
-              onClick={toggle}
+              onClick={() => {
+                window.location.href = "/gallery";
+              }}
             >
               Go to Gallery
             </Button>{" "}
-            <Button color="primary" className={styles.button2} onClick={toggle}>
+            <Button
+              color="primary"
+              className={styles.button2}
+              onClick={() => {
+                window.location.href = "/echo";
+              }}
+            >
               Another Recall Session
             </Button>
           </ModalFooter>

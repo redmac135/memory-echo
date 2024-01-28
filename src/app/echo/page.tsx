@@ -64,7 +64,7 @@ export default function Echo() {
   const [promptId, setPromptId] = useState("");
   const [mediaId, setMediaId] = useState("");
   const [runningTotal, setRunningTotal] = useState<Emotions>(EmotionData);
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
 
