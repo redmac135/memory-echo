@@ -21,13 +21,17 @@ export default function EchoPrompt({
       setPromptId(res.data.id);
       setMediaId(res.data.mediaId);
     });
+  }, []);
 
-    axios
-      .get("/api/media", { params: { mediaId: prompt?.mediaId } })
-      .then((res) => {
-        setMedia(res.data);
-      });
-  });
+  useEffect(() => {
+    if (prompt?.mediaId) {
+      axios
+        .get("/api/media", { params: { mediaId: prompt.mediaId } })
+        .then((res) => {
+          setMedia(res.data);
+        });
+    }
+  }, [prompt]);
 
   return (
     <div>
