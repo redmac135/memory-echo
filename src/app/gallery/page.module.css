@@ -1,8 +1,20 @@
 .title {
-  font-size: 3rem;
-  font-weight: 600;
-  text-align: center;
   padding-top: 2.4rem;
+  font-size: 3rem;
+  background: linear-gradient(to right, #5855D3, #5095FF); /* Dark to light blue gradient */
+  -webkit-background-clip: text; /* Apply gradient to text content */
+  background-clip: text;
+  text-align: center;
+  color: transparent; /* Make the original text color transparent */
+}
+
+.logo {
+  position: fixed; 
+  max-width: 65px;
+  height: auto; 
+  display: block;
+  z-index: 1; 
+  padding: 20px;
 }
 
 .description {

@@ -18,8 +18,8 @@ export default function Gallery() {
   return (
     <main>
       <div className={styles.bgtint}></div>
-      <h1 className={styles.title}>ECHO</h1>
-      <h5 className={styles.description}>Welcome to your harbour...</h5>
+      <img className={styles.logo} src="/logohighqual.png" alt="logo"/>
+      <h1 className={styles.title}>Your Memory Gallery</h1>
       <section className={styles.galleryWrapper}>
         <div className={styles.gallery}>
           {extendedEntries.map((entry) => {
