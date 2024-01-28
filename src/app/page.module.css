@@ -21,23 +21,23 @@
 
 .logo {
   position: fixed; 
-  max-width: 125px;
+  max-width: 65px;
   height: auto; 
   display: block;
   z-index: 1; 
-  padding: 50px;
+  padding: 20px;
 }
 
 .button {
-  padding: 20px 30px;
-  font-size: 40px;
+  padding: 12px 18px;
+  font-size: 18px;
   border-radius: 25px;  
   background: linear-gradient(to right, #5855D3, #5095FF);
   color: #fff; 
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
   border: none;
-  margin-top: 220px;
+  margin-top: 120px;
 }
 
 .button:hover {
