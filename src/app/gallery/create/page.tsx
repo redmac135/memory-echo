@@ -32,49 +32,55 @@ export default function CreateEntry() {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      {mediaInfo ? (
-        mediaInfo.resource_type === "video" ? (
-          <CldVideoPlayer width={300} height={300} src={mediaInfo.public_id} />
-        ) : (
-          <CldImage
-            width={300}
-            height={300}
-            src={mediaInfo.public_id}
-            alt={caption}
-          />
-        )
-      ) : null}
+    <main>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        {mediaInfo ? (
+          mediaInfo.resource_type === "video" ? (
+            <CldVideoPlayer
+              width={300}
+              height={300}
+              src={mediaInfo.public_id}
+            />
+          ) : (
+            <CldImage
+              width={300}
+              height={300}
+              src={mediaInfo.public_id}
+              alt={caption}
+            />
+          )
+        ) : null}
 
-      <CldUploadWidget
-        uploadPreset="gallery-default"
-        onSuccess={(results) => {
-          if (!results.info || typeof results.info === "string") {
-            console.error("Upload failed");
-            return;
-          }
-          setMediaInfo(results.info);
-        }}
-      >
-        {({ open }) => {
-          return (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                open();
-              }}
-            >
-              Upload
-            </button>
-          );
-        }}
-      </CldUploadWidget>
-      <input
-        type="text"
-        value={caption}
-        onChange={(e) => setCaption(e.target.value)}
-      />
-      <button>Submit</button>
-    </form>
+        <CldUploadWidget
+          uploadPreset="gallery-default"
+          onSuccess={(results) => {
+            if (!results.info || typeof results.info === "string") {
+              console.error("Upload failed");
+              return;
+            }
+            setMediaInfo(results.info);
+          }}
+        >
+          {({ open }) => {
+            return (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  open();
+                }}
+              >
+                Upload
+              </button>
+            );
+          }}
+        </CldUploadWidget>
+        <input
+          type="text"
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
+        />
+        <button>Submit</button>
+      </form>
+    </main>
   );
 }

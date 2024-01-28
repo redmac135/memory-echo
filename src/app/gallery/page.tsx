@@ -27,8 +27,8 @@ export default function Gallery() {
                 <div key={entry.id} className={styles.galleryItem}>
                   <CldVideoPlayer
                     src={entry.media.publicId}
-                    width={280}
-                    height={400}
+                    width={300}
+                    height={300}
                   />
                   <p className={styles.galleryItemInfo}>{entry.caption}</p>
                 </div>
@@ -40,8 +40,9 @@ export default function Gallery() {
                     src={entry.media.publicId}
                     alt={entry.caption}
                     className={styles.galleryImg}
-                    width={280}
-                    height={400}
+                    width={300}
+                    height={300}
+                    crop="fill"
                   />
                   <p className={styles.galleryItemInfo}>{entry.caption}</p>
                 </div>
