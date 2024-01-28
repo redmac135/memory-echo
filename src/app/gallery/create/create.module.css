@@ -1,0 +1,51 @@
+.container {
+    margin: auto;
+    text-align: center;   
+    align-items: center;
+    display: block;
+}
+
+.container_upload {
+    margin: auto;
+    text-align: center;   
+    align-items: center;
+    display: block;
+    margin-top: 40%;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 400;
+    background: linear-gradient(to right, #5855D3, #5095FF);
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-right: 20px;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 40%;
+    padding: 10px; /* Adjust padding as needed */
+    margin: 10px 0; /* Add margin for spacing */
+    border: 1px solid #ccc; /* Set a border color */
+    border-radius: 10px; /* Add rounded corners */
+    font-size: 16px; /* Set font size */
+    background-color: black;
+    color: white;
+    
+}
+
+/* Add hover styles for visual feedback */
+.input:hover {
+    border-color: rgb(255, 255, 255); /* Change border color on hover */
+}
+
+/* Add focus styles for visual feedback when the input is active */
+.input:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Add a subtle box shadow when focused */
+}

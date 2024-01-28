@@ -9,6 +9,7 @@ import {
 import "next-cloudinary/dist/cld-video-player.css";
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import styles from './create.module.css'
 
 export default function CreateEntry() {
   const [mediaInfo, setMediaInfo] = useState<CldUploadWidgetInfo>();
@@ -32,7 +33,7 @@ export default function CreateEntry() {
   };
 
   return (
-    <main>
+    <main className={styles.container}>
       <form onSubmit={(e) => handleSubmit(e)}>
         {mediaInfo ? (
           mediaInfo.resource_type === "video" ? (
@@ -63,23 +64,28 @@ export default function CreateEntry() {
         >
           {({ open }) => {
             return (
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  open();
-                }}
-              >
-                Upload
-              </button>
+                <button
+                    className={styles.button}
+                    onClick={(e) => {
+                    e.preventDefault();
+                    open();
+                    }}
+                >
+                    Upload
+                </button>
             );
           }}
         </CldUploadWidget>
-        <input
-          type="text"
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-        />
-        <button>Submit</button>
+            <input
+            className={styles.input}
+            type="text"
+            placeholder="Tell us about your memory"
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+            />
+        <div>
+            <button className={styles.button}>Submit</button>
+        </div>
       </form>
     </main>
   );
