@@ -35,12 +35,14 @@ export default function EchoPrompt({
 
   return (
     <div>
-      <p>Let's talk about...</p>
+      <p>Let&apos;s talk about...</p>
       {media?.isVideo ? (
         <CldVideoPlayer src={media?.publicId} width={280} height={400} />
       ) : (
         <CldImage
+          //@ts-ignore
           src={media?.publicId}
+          //@ts-ignore
           alt={prompt?.caption}
           width={300}
           height={300}

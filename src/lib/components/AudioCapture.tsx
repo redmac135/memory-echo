@@ -46,11 +46,21 @@ export default function AudioCapture({
     }
   }, [capturing, recordingTime]);
 
-  const addAudioElement = (blob) => {
+  const addAudioElement = (blob: Blob) => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
+    if (reader.error) {
+      console.error(reader.error);
+      return;
+    }
     reader.onloadend = function () {
-      setAudioEncoded(reader.result.split(",")[1]);
+      if (!reader.result) {
+        return;
+      }
+      if (typeof reader.result === "string") {
+        setAudioEncoded(reader.result.split(",")[1]);
+        return;
+      }
     };
   };
 

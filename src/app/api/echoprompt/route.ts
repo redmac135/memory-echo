@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "no entries found" });
   }
   let leastReflections = entries[0]._count.Hume;
-  let listToReduce = [];
+  let listToReduce: any = [];
   entries.forEach((entry) => {
     if (entry._count.Hume < leastReflections) {
       listToReduce = [entry];

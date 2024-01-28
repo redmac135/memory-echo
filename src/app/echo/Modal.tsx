@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import styles from "./modal.module.css";
 
-function Example({ modal, toggle, ...args }) {
+function Example({ modal, toggle, ...args }: any) {
   return (
     <div>
       <Modal className={styles.modalWrapper} isOpen={modal} toggle={toggle}>
