@@ -52,7 +52,7 @@ const SAD_EMOTIONS = [
 
 export default function Echo() {
   <div className={styles.background}></div>;
-  const webcamRef = useRef<Webcam>();
+  const webcamRef = useRef<Webcam>(null);
   const mediaRecorderRef = useRef<MediaRecorder>();
   const [capturing, setCapturing] = useState(false);
   const [emotions, setEmotions] = useState<Emotion[]>([
