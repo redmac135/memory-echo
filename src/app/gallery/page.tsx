@@ -5,6 +5,7 @@ import { ExtendedEntry, type Entry } from "@/lib/schema";
 import styles from "./page.module.css";
 import { CldVideoPlayer, CldImage } from "next-cloudinary";
 import axios from "axios";
+import Logo from "@/lib/components/Logo";
 
 export default function Gallery() {
   const [extendedEntries, setExtendedEntries] = useState<ExtendedEntry[]>([]);
@@ -15,8 +16,16 @@ export default function Gallery() {
     });
   }, []);
 
+  function handleRedirect() {
+    window.location.href = "/gallery/create";
+  }
+
   return (
     <main>
+      <Logo />
+      <button className={styles.createButton} onClick={handleRedirect}>
+        Create
+      </button>
       <div className={styles.bgtint}></div>
       <h1 className={styles.title}>Your Memory Gallery</h1>
       <section className={styles.galleryWrapper}>

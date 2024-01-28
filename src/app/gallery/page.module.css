@@ -43,7 +43,7 @@
   margin: var(--cell-margin);
   background-color: white;
   width: 210px;
-  height: 245px;
+  height: 265px;
   padding: 20px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 }
@@ -63,7 +63,7 @@
 .galleryItemInfo {
   position: absolute;
   text-align: center;
-  bottom: 6px;
+  bottom: 3px;
   opacity: 0;
   width: calc(100% - 40px);
   transition: opacity 0.3s ease-in-out;
@@ -102,4 +102,21 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: -10;
+}
+
+.createButton {
+  position: absolute;
+  right: 2rem;
+  top: 3.25rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 400;
+  background: linear-gradient(to right, #5855d3, #5095ff);
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-right: 20px;
 }

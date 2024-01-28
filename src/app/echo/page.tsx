@@ -123,9 +123,19 @@ export default function Echo() {
             ref={webcamRef}
           />
           {capturing ? (
-            <button onClick={handleStopCaptureClick}>Stop Capture</button>
+            <button
+              className={styles.startstopbutton}
+              onClick={handleStopCaptureClick}
+            >
+              Stop Capture
+            </button>
           ) : (
-            <button onClick={handleStartCaptureClick}>Start Capture</button>
+            <button
+              className={styles.startstopbutton}
+              onClick={handleStartCaptureClick}
+            >
+              Start Capture
+            </button>
           )}
         </section>
         <Example modal={modal} toggle={toggle} />

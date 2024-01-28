@@ -1,0 +1,8 @@
+.logo {
+  position: absolute;
+  height: auto;
+  display: block;
+  z-index: 1;
+  padding: 20px;
+  top: 0.7rem;
+}

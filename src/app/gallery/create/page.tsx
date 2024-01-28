@@ -9,7 +9,7 @@ import {
 import "next-cloudinary/dist/cld-video-player.css";
 import { FormEvent, useState } from "react";
 import axios from "axios";
-import styles from './create.module.css'
+import styles from "./create.module.css";
 
 export default function CreateEntry() {
   const [mediaInfo, setMediaInfo] = useState<CldUploadWidgetInfo>();
@@ -34,7 +34,7 @@ export default function CreateEntry() {
 
   return (
     <main className={styles.container}>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
         {mediaInfo ? (
           mediaInfo.resource_type === "video" ? (
             <CldVideoPlayer
@@ -64,27 +64,28 @@ export default function CreateEntry() {
         >
           {({ open }) => {
             return (
-                <button
-                    className={styles.button}
-                    onClick={(e) => {
-                    e.preventDefault();
-                    open();
-                    }}
-                >
-                    Upload
-                </button>
+              <button
+                className={styles.button}
+                onClick={(e) => {
+                  e.preventDefault();
+                  open();
+                }}
+              >
+                Upload
+              </button>
             );
           }}
         </CldUploadWidget>
-            <input
-            className={styles.input}
-            type="text"
-            placeholder="Tell us about your memory"
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
-            />
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Tell us about your memory"
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}
+          required
+        />
         <div>
-            <button className={styles.button}>Submit</button>
+          <button className={styles.button}>Submit</button>
         </div>
       </form>
     </main>
