@@ -5,7 +5,13 @@ import { useEffect, useState } from "react";
 import { Entry, Media } from "@/lib/schema";
 import { CldImage, CldVideoPlayer } from "next-cloudinary";
 
-export default function EchoPrompt({ setPromptId }: { setPromptId: any }) {
+export default function EchoPrompt({
+  setPromptId,
+  setMediaId,
+}: {
+  setPromptId: any;
+  setMediaId: any;
+}) {
   const [prompt, setPrompt] = useState<Entry>();
   const [media, setMedia] = useState<Media>();
 
@@ -13,6 +19,7 @@ export default function EchoPrompt({ setPromptId }: { setPromptId: any }) {
     axios.get("/api/echoprompt").then((res) => {
       setPrompt(res.data);
       setPromptId(res.data.id);
+      setMediaId(res.data.mediaId);
     });
 
     axios

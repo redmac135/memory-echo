@@ -30,7 +30,7 @@ model Entry {
 
 model Hume {
   id        String   @id @unique @default(cuid())
-  createdAt DateTime
+  createdAt DateTime @default(now())
   entry     Entry    @relation(fields: [entryId], references: [id])
   media     Media    @relation(fields: [mediaId], references: [id])
   entryId   String

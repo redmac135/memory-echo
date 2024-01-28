@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { EmotionName, Emotions } from "@/lib/schema";
 
 export default function AudioAnalysis({
   audioEncoded,
   setEmotions,
+  setRunningTotal,
   capturing,
 }: {
   audioEncoded: string;
   setEmotions: any;
+  setRunningTotal: any;
   capturing: boolean;
 }) {
   const APIKEY = process.env.NEXT_PUBLIC_HUME_API_KEY;
@@ -40,6 +43,16 @@ export default function AudioAnalysis({
         return;
       }
       setEmotions(data.prosody.predictions[0].emotions);
+      setRunningTotal((prev: Emotions) => {
+        let newValue: { [key: string]: number } = { ...prev };
+        data.prosody.predictions[0].emotions.forEach(
+          (emotionObj: { name: EmotionName; score: number }) => {
+            const emotionName: EmotionName = emotionObj.name;
+            newValue[emotionName] = prev[emotionName] + emotionObj.score;
+          }
+        );
+        return newValue;
+      });
     };
     socketRef.current.onclose = () => {
       console.log("Disconnected from Hume");

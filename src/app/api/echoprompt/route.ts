@@ -1,5 +1,23 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(req: NextRequest) {
+  const { mediaId, promptId, happiness } = await req.json();
+
+  const entry = await prisma.entry.update({
+    where: { id: promptId },
+    data: {
+      happiness: happiness,
+    },
+  });
+
+  const hume = await prisma.hume.create({
+    data: {
+      entryId: entry.id,
+      mediaId: mediaId,
+    },
+  });
+}
 
 export async function GET(req: NextRequest) {
   // choose a prompt using the following options

@@ -3,8 +3,48 @@
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import AudioCapture from "@/lib/components/AudioCapture";
-import { type Emotion } from "@/lib/schema";
+import { Emotions, type Emotion } from "@/lib/schema";
 import EchoPrompt from "@/lib/components/EchoPrompt";
+import axios from "axios";
+
+const HAPPY_EMOTIONS = [
+  "Admiration",
+  "Adoration",
+  "Aesthetic Appreciation",
+  "Amusement",
+  "Awe",
+  "Contentment",
+  "Ecstasy",
+  "Empathic Pain",
+  "Interest",
+  "Joy",
+  "Love",
+  "Realization",
+  "Relief",
+  "Romance",
+  "Surprise (positive)",
+  "Triumph",
+];
+
+const SAD_EMOTIONS = [
+  "Anger",
+  "Anxiety",
+  "Awkwardness",
+  "Boredom",
+  "Confusion",
+  "Contempt",
+  "Disappointment",
+  "Disgust",
+  "Distress",
+  "Doubt",
+  "Embarrassment",
+  "Fear",
+  "Guilt",
+  "Horror",
+  "Pain",
+  "Shame",
+  "Surprise (negative)",
+];
 
 export default function Echo() {
   const webcamRef = useRef<Webcam>();
@@ -13,6 +53,8 @@ export default function Echo() {
   const [emotions, setEmotions] = useState<Emotion[]>([]);
   const [audioEncoded, setAudioEncoded] = useState("");
   const [promptId, setPromptId] = useState("");
+  const [mediaId, setMediaId] = useState("");
+  const [runningTotal, setRunningTotal] = useState<Emotions>();
 
   const handleStartCaptureClick = useCallback(() => {
     setCapturing(true);
@@ -30,6 +72,24 @@ export default function Echo() {
     }
     mediaRecorderRef.current.stop();
     setCapturing(false);
+
+    // compute the final happiness score
+    let happiness = 0;
+    if (runningTotal) {
+      for (const [emotion, score] of Object.entries(runningTotal)) {
+        if (emotion in HAPPY_EMOTIONS) {
+          happiness += score;
+        } else if (emotion in SAD_EMOTIONS) {
+          happiness -= score;
+        }
+      }
+
+      axios.post("/api/echoprompt", {
+        promptId: promptId,
+        mediaId: mediaId,
+        happiness: happiness,
+      });
+    }
   }, [mediaRecorderRef, webcamRef, setCapturing]);
 
   const videoConstraints = {
@@ -53,8 +113,9 @@ export default function Echo() {
         audioEncoded={audioEncoded}
         setAudioEncoded={setAudioEncoded}
         setEmotions={setEmotions}
+        setRunningTotal={setRunningTotal}
       />
-      <EchoPrompt setPromptId={setPromptId} />
+      <EchoPrompt setPromptId={setPromptId} setMediaId={setMediaId} />
       <table>
         <thead>
           <tr>
