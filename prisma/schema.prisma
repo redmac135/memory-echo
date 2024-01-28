@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_DB_URL") // uses connection pooling
+}
+
+model User {
+  id    String  @id @unique @default(cuid())
+  name  String
+  Entry Entry[]
+}
+
+model Entry {
+  id        String   @id @unique @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  caption   String
+  media     Media    @relation(fields: [mediaId], references: [id])
+  createdAt DateTime @default(now())
+  happiness Decimal?
+  userId    String
+  mediaId   String
+  Hume      Hume[]
+}
+
+model Hume {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  entry     Entry    @relation(fields: [entryId], references: [id])
+  media     Media    @relation(fields: [mediaId], references: [id])
+  entryId   String
+  mediaId   String
+}
+
+model Media {
+  id       String   @id @unique @default(cuid())
+  publicId String
+  isVideo  Boolean? @default(false)
+  Entry    Entry[]
+  Hume     Hume[]
+}

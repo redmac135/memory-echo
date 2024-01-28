@@ -1,0 +1,33 @@
+.modelWrapper {
+  font-family: "Inter", sans-serif;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.title {
+  background: linear-gradient(
+    to right,
+    #5855d3,
+    #5095ff
+  ); /* Dark to light blue gradient */
+  -webkit-background-clip: text; /* Apply gradient to text content */
+  background-clip: text;
+  color: transparent; /* Make the original text color transparent */
+
+  --bs-modal-header-border-width: 0 !important;
+  justify-content: center !important;
+  padding-bottom: 0 !important;
+}
+
+.subtitle {
+  padding-top: 5px;
+  font-size: 1.5rem;
+
+  --bs-modal-header-border-width: 0 !important;
+  justify-content: center !important;
+}
+
+.footer {
+  --bs-modal-footer-border-width: 0 !important;
+  display: flex;
+  justify-content: center !important;
+}

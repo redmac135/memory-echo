@@ -1,0 +1,7 @@
+.logo {
+  position: fixed;
+  height: auto;
+  display: block;
+  z-index: 1;
+  padding: 20px;
+}
