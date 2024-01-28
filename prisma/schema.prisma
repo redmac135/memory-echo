@@ -22,19 +22,19 @@ model Entry {
   caption   String
   media     Media    @relation(fields: [mediaId], references: [id])
   createdAt DateTime @default(now())
+  happiness Decimal?
   userId    String
   mediaId   String
   Hume      Hume[]
 }
 
 model Hume {
-  id         String   @id @unique @default(cuid())
-  createdAt  DateTime
-  confidence Decimal
-  entry      Entry    @relation(fields: [entryId], references: [id])
-  media      Media    @relation(fields: [mediaId], references: [id])
-  entryId    String
-  mediaId    String
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime
+  entry     Entry    @relation(fields: [entryId], references: [id])
+  media     Media    @relation(fields: [mediaId], references: [id])
+  entryId   String
+  mediaId   String
 }
 
 model Media {
