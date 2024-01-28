@@ -3,9 +3,11 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
+      <img className={styles.logo} src="/logohighqual.png" alt="logo"/>
       <section className={styles.section}>
-        <img src="/everything-2.png" objectFit="cover" alt="introductory image" />
+        <img className={styles.img} src="/landing4.webp" alt="landing page"/>
+        <button className={styles.button}>Take me back...</button>
       </section>
     </main>
   );
