@@ -105,7 +105,15 @@ export default function Echo() {
 
     setModal(true);
     console.log("hi");
-  }, [mediaRecorderRef, webcamRef, setCapturing, setModal]);
+  }, [
+    mediaRecorderRef,
+    webcamRef,
+    setCapturing,
+    setModal,
+    promptId,
+    mediaId,
+    runningTotal,
+  ]);
 
   const videoConstraints = {
     facingMode: "user",

@@ -21,7 +21,7 @@ export default function EchoPrompt({
       setPromptId(res.data.id);
       setMediaId(res.data.mediaId);
     });
-  }, []);
+  }, [setMediaId, setPromptId, setPrompt]);
 
   useEffect(() => {
     if (prompt?.mediaId) {

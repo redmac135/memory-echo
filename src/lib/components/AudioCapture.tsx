@@ -28,24 +28,6 @@ export default function AudioCapture({
       (err) => console.error(err)
     );
 
-  useEffect(() => {
-    if (!capturing) {
-      return;
-    }
-    startRecording();
-
-    // To save money, stop recording after 3 seconds
-    if (recordingTime > 3) {
-      stopRecording();
-      console.log("audio stopped after 3 seconds");
-    }
-
-    if (recordingBlob && recordingBlob != currentAudio) {
-      setCurrentAudio(recordingBlob);
-      addAudioElement(recordingBlob);
-    }
-  }, [capturing, recordingTime]);
-
   const addAudioElement = (blob: Blob) => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
@@ -63,6 +45,32 @@ export default function AudioCapture({
       }
     };
   };
+
+  useEffect(() => {
+    if (!capturing) {
+      return;
+    }
+    startRecording();
+
+    // To save money, stop recording after 3 seconds
+    if (recordingTime > 3) {
+      stopRecording();
+      console.log("audio stopped after 3 seconds");
+    }
+
+    if (recordingBlob && recordingBlob != currentAudio) {
+      setCurrentAudio(recordingBlob);
+      addAudioElement(recordingBlob);
+    }
+  }, [
+    capturing,
+    recordingTime,
+    addAudioElement,
+    recordingBlob,
+    currentAudio,
+    startRecording,
+    stopRecording,
+  ]);
 
   return (
     <AudioAnalysis
