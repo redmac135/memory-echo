@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import styles from "./modal.module.css";
+import Image from "next/image";
 
 function Example({ modal, toggle, ...args }: any) {
   return (
@@ -10,7 +11,7 @@ function Example({ modal, toggle, ...args }: any) {
           <ModalHeader className={styles.title}>Memory Recorded!</ModalHeader>
           <ModalHeader className={styles.subtitle}>Whats Next?</ModalHeader>
           <ModalBody>
-            <img
+            <Image
               className={styles.imgg}
               width={350}
               height={350}
