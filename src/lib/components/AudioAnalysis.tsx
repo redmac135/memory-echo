@@ -84,7 +84,7 @@ export default function AudioAnalysis({
 
     const repeater = setTimeout(() => capturing && sendRequest(), 3000);
     return () => clearTimeout(repeater);
-  }, [audioEncoded, capturing]);
+  });
 
   return <></>;
 }

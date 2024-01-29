@@ -20,5 +20,7 @@ export async function POST(req: NextRequest) {
       userId: userId,
     },
   });
-  return NextResponse.redirect("/gallery");
+  const url = req.nextUrl.clone();
+  url.pathname = "/gallery";
+  return NextResponse.rewrite(url);
 }

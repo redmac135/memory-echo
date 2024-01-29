@@ -107,7 +107,6 @@ export default function Echo() {
     console.log("hi");
   }, [
     mediaRecorderRef,
-    webcamRef,
     setCapturing,
     setModal,
     promptId,

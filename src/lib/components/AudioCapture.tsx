@@ -28,29 +28,29 @@ export default function AudioCapture({
       (err) => console.error(err)
     );
 
-  const addAudioElement = (blob: Blob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    if (reader.error) {
-      console.error(reader.error);
-      return;
-    }
-    reader.onloadend = function () {
-      if (!reader.result) {
-        return;
-      }
-      if (typeof reader.result === "string") {
-        setAudioEncoded(reader.result.split(",")[1]);
-        return;
-      }
-    };
-  };
-
   useEffect(() => {
     if (!capturing) {
       return;
     }
     startRecording();
+
+    const addAudioElement = (blob: Blob) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      if (reader.error) {
+        console.error(reader.error);
+        return;
+      }
+      reader.onloadend = function () {
+        if (!reader.result) {
+          return;
+        }
+        if (typeof reader.result === "string") {
+          setAudioEncoded(reader.result.split(",")[1]);
+          return;
+        }
+      };
+    };
 
     // To save money, stop recording after 3 seconds
     if (recordingTime > 3) {
@@ -64,8 +64,8 @@ export default function AudioCapture({
     }
   }, [
     capturing,
+    setAudioEncoded,
     recordingTime,
-    addAudioElement,
     recordingBlob,
     currentAudio,
     startRecording,
