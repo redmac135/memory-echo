@@ -17,6 +17,8 @@ export async function POST(req: NextRequest) {
       mediaId: mediaId,
     },
   });
+
+  return NextResponse.json(hume);
 }
 
 export async function GET(req: NextRequest) {

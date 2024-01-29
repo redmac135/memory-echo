@@ -1,9 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { type Entry } from "@/lib/schema";
 
 export async function GET(req: NextRequest) {
-  const entries: Entry[] = await prisma.entry.findMany({
+  const entries = await prisma.entry.findMany({
     orderBy: { createdAt: "desc" },
   });
   return NextResponse.json(entries);
@@ -21,5 +20,7 @@ export async function POST(req: NextRequest) {
       userId: userId,
     },
   });
-  return NextResponse.redirect("/gallery");
+  const url = req.nextUrl.clone();
+  url.pathname = "/gallery";
+  return NextResponse.rewrite(url);
 }

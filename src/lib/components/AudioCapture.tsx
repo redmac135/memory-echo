@@ -34,6 +34,24 @@ export default function AudioCapture({
     }
     startRecording();
 
+    const addAudioElement = (blob: Blob) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      if (reader.error) {
+        console.error(reader.error);
+        return;
+      }
+      reader.onloadend = function () {
+        if (!reader.result) {
+          return;
+        }
+        if (typeof reader.result === "string") {
+          setAudioEncoded(reader.result.split(",")[1]);
+          return;
+        }
+      };
+    };
+
     // To save money, stop recording after 3 seconds
     if (recordingTime > 3) {
       stopRecording();
@@ -44,25 +62,15 @@ export default function AudioCapture({
       setCurrentAudio(recordingBlob);
       addAudioElement(recordingBlob);
     }
-  }, [capturing, recordingTime]);
-
-  const addAudioElement = (blob: Blob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    if (reader.error) {
-      console.error(reader.error);
-      return;
-    }
-    reader.onloadend = function () {
-      if (!reader.result) {
-        return;
-      }
-      if (typeof reader.result === "string") {
-        setAudioEncoded(reader.result.split(",")[1]);
-        return;
-      }
-    };
-  };
+  }, [
+    capturing,
+    setAudioEncoded,
+    recordingTime,
+    recordingBlob,
+    currentAudio,
+    startRecording,
+    stopRecording,
+  ]);
 
   return (
     <AudioAnalysis
